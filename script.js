@@ -11,8 +11,24 @@
 ══════════════════════════════════════ */
 const COMICS = [
   // Example — uncomment and edit to add a comic:
+  { title: "An idea a friend of mine had after browsing the Yamaha website", src: "comics/16.png" },
   { title: "That time a friend of mine fell asleep in class", src: "comics/1.png" },
-  // { title: "Lab Thoughts #1", src: "assets/comic-01.png" },
+  { title: "The hurricane season from I believe 2025", src: "comics/2.png" },
+  { title: "A weird dream a friend of mine had", src: "comics/3.png" },
+  { title: "Why you should probably never pull an all nighter", src: "comics/4.png" },
+  { title: "When my friend proposed to us a very well hidden pyramid scheme", src: "comics/5.png" },
+  { title: "That time we played hide and seek in the mall", src: "comics/6.png" },
+  { title: "An actually real email sent out at our high school", src: "comics/7.png" },
+  { title: "DO NOT EAT SPICY CHICKEN WINGS BEFORE AN EXAM", src: "comics/8.png" },
+  { title: "The hurricane season from I believe 2024", src: "comics/9.png" },
+  { title: "A comic suggestion from a long time ago", src: "comics/10.png" },
+  { title: "A little snippet of the chaos unraveling in a groupchat", src: "comics/11.png" },
+  { title: "Why I would never grade assignments for volunteer hours again", src: "comics/12.png" },
+  { title: "Science Olympiad inspired crashout", src: "comics/13.png" },
+  { title: "Reason why I have a friend who graduated highschool at 16", src: "comics/14.png" },
+  { title: "What apparently happens to you when you use lightmode", src: "comics/15.png" },
+  
+  
 ];
 
 /* ══════════════════════════════════════
