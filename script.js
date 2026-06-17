@@ -11,7 +11,7 @@
 ══════════════════════════════════════ */
 const COMICS = [
   // Example — uncomment and edit to add a comic:
-  // { title: "The First One", src: "https://placekitten.com/760/500" },
+  // { title: "That time a friend of mine fell asleep in class", src: "comics/1.png" },
   // { title: "Lab Thoughts #1", src: "assets/comic-01.png" },
 ];
 
