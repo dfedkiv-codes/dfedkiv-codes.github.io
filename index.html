@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Danylo Fedkiv — Research Portfolio</title>
+  <title>Danylo Fedkiv</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -11,214 +11,168 @@
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAV / TAB BAR -->
   <nav id="navbar">
     <div class="nav-inner">
-      <span class="nav-logo">Danylo Fedkiv</span>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#cv">CV</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#fun">Fun</a></li>
+      <span class="nav-logo">D.F.</span>
+      <ul class="nav-tabs">
+        <li><button class="tab-btn active" data-tab="about">About</button></li>
+        <li><button class="tab-btn" data-tab="projects">Projects</button></li>
+        <li><button class="tab-btn" data-tab="blog">Blog</button></li>
+        <li><button class="tab-btn" data-tab="fun">Fun</button></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     </div>
   </nav>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 1 — ABOUT
+       TAB: ABOUT
   ═══════════════════════════════════════════ -->
-  <section id="about" class="section">
-    <div class="container">
+  <div id="tab-about" class="tab-panel active">
+    <div class="container section">
 
-      <div class="about-grid">
-        <div class="about-main fade-in">
-          <p class="section-eyebrow">01 — About</p>
+      <div class="about-grid fade-in">
+        <div class="about-main">
+          <p class="section-eyebrow">About</p>
           <h1 class="about-name">Danylo Fedkiv</h1>
-          <p class="about-tagline">
-            Undergraduate researcher in chemical biology at Florida Atlantic University,
-            pursuing the physician-scientist track. Interested in the biochemical
-            mechanisms of disease. Currently focused on matrix metalloproteinase
-            biology, peptide-based probes, and computational approaches to drug discovery.
+
+          <!-- ── BLANK: replace with your bio ── -->
+          <p class="about-tagline placeholder-text">
+            [ Bio coming soon. ]
           </p>
 
           <div class="about-links">
-            <a href="mailto:dfedkiv2025@fau.edu" class="btn-link">✉ dfedkiv2022@fau.edu</a>
-            <a href="https://linkedin.com/in/danylofedkiv" target="_blank" rel="noopener" class="btn-link">↗ LinkedIn</a>
+            <!-- ── BLANK: add your real email / links ── -->
+            <a href="mailto:you@example.com" class="btn-link">✉ your@email.com</a>
+            <a href="#" class="btn-link">↗ LinkedIn</a>
             <a href="cv.pdf" download class="btn-primary">↓ Download CV</a>
           </div>
 
           <div class="highlights">
+            <!-- ── BLANK: fill in your highlights ── -->
             <div class="highlight-item">
-              <span class="highlight-val">Barry Goldwater Scholar</span>
-              <span class="highlight-label">Class of 2028</span>
+              <span class="highlight-val placeholder-text">[ Award / Honor ]</span>
+              <span class="highlight-label">year</span>
             </div>
             <div class="highlight-item">
-              <span class="highlight-val">National Merit Scholar</span>
-              <span class="highlight-label">Benacquisto + Bright Futures</span>
+              <span class="highlight-val placeholder-text">[ Award / Honor ]</span>
+              <span class="highlight-label">year</span>
             </div>
             <div class="highlight-item">
-              <span class="highlight-val">4.00 GPA</span>
-              <span class="highlight-label">Chemistry &amp; Biology, FAU WHC</span>
+              <span class="highlight-val placeholder-text">[ GPA ]</span>
+              <span class="highlight-label">major · school</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-val placeholder-text">[ Research ]</span>
+              <span class="highlight-label">lab · institution</span>
+            </div>
           </div>
         </div>
 
-        <div class="about-sidebar fade-in" style="animation-delay:.15s">
+        <div class="about-sidebar">
           <div class="sidebar-block">
             <p class="sidebar-title">Research Interests</p>
+            <!-- ── BLANK: list your interests ── -->
             <ul class="interest-list">
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
+              <li class="placeholder-text">[ Interest 1 ]</li>
+              <li class="placeholder-text">[ Interest 2 ]</li>
+              <li class="placeholder-text">[ Interest 3 ]</li>
+              <li class="placeholder-text">[ Interest 4 ]</li>
             </ul>
           </div>
 
           <div class="sidebar-block">
             <p class="sidebar-title">Status</p>
+            <!-- ── BLANK: current roles / future plans ── -->
             <ul class="status-list">
-              <li><span class="dot green"></span>test</li>
-              <li><span class="dot amber"></span>test</li>
-              <li><span class="dot amber"></span>test</li>
-              <li><span class="dot gray"></span>test</li>
+              <li><span class="dot green"></span><span class="placeholder-text">[ Active role ]</span></li>
+              <li><span class="dot amber"></span><span class="placeholder-text">[ Upcoming role ]</span></li>
+              <li><span class="dot gray"></span><span class="placeholder-text">[ Future goal ]</span></li>
             </ul>
           </div>
 
           <div class="sidebar-block">
             <p class="sidebar-title">Education</p>
-            <p class="sidebar-text">B.S. Chemistry + Biology (dual)<br>
-            Florida Atlantic University<br>
-            Wilkes Honors College<br>
-            Expected May 2028</p>
+            <!-- ── BLANK: your institution & degree ── -->
+            <p class="sidebar-text placeholder-text">[ Degree ]<br>[ Institution ]<br>[ Expected graduation ]</p>
           </div>
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 2 — PROJECTS
+       TAB: PROJECTS
   ═══════════════════════════════════════════ -->
-  <section id="projects" class="section">
-    <div class="container">
-      <p class="section-eyebrow">03 — Projects</p>
+  <div id="tab-projects" class="tab-panel">
+    <div class="container section">
+      <p class="section-eyebrow">Projects</p>
       <h2 class="section-title">Research &amp; Independent Work</h2>
 
       <div class="project-grid">
+        <!-- ── BLANK project card template ──
+             Duplicate and fill in to add more projects ── -->
 
         <div class="project-card fade-in">
           <div class="project-card-top">
             <span class="project-status ongoing">ongoing</span>
-            <span class="project-tag">MMP inhibition</span>
+            <span class="project-tag placeholder-text">[ tag ]</span>
           </div>
-          <h3 class="project-title">MT1-MMP Selective Inhibitory Probes</h3>
-          <p class="project-desc">
-            Designing and synthesizing fluorogenic triple-helical peptide substrates that
-            selectively report MT1-MMP (MMP-14) activity over MMP-13 and soluble MMPs.
-            Uses Fmoc SPPS, RP-HPLC purification, MALDI-TOF characterization,
-            and fluorescence kinetic assays to determine kcat/Km selectivity profiles.
+          <h3 class="project-title placeholder-text">[ Project Title ]</h3>
+          <p class="project-desc placeholder-text">
+            [ Description of the project. What question does it address? What methods are used? What is the current state? ]
           </p>
-          <p class="project-lab">Fields Lab · FAU</p>
+          <p class="project-lab placeholder-text">[ Lab · Institution ]</p>
         </div>
 
         <div class="project-card fade-in" style="animation-delay:.08s">
           <div class="project-card-top">
-            <span class="project-status ongoing">ongoing</span>
-            <span class="project-tag">peptide synthesis</span>
+            <span class="project-status completed">completed</span>
+            <span class="project-tag placeholder-text">[ tag ]</span>
           </div>
-          <h3 class="project-title">MMP-13 Fluorogenic Substrate Library</h3>
-          <p class="project-desc">
-            Building a library of triple-helical collagen-mimetic peptides to profile
-            MMP-13 substrate preferences. Incorporates non-natural amino acids at P1–P3′
-            positions to establish selectivity determinants. Contributes to a manuscript
-            in preparation.
+          <h3 class="project-title placeholder-text">[ Project Title ]</h3>
+          <p class="project-desc placeholder-text">
+            [ Description of the project. ]
           </p>
-          <p class="project-lab">Fields Lab · FAU</p>
+          <p class="project-lab placeholder-text">[ Lab · Institution ]</p>
         </div>
 
         <div class="project-card fade-in" style="animation-delay:.16s">
           <div class="project-card-top">
-            <span class="project-status completed">completed</span>
-            <span class="project-tag">clinical data science</span>
-          </div>
-          <h3 class="project-title">NHANES Cholesterol Epidemiology Analysis</h3>
-          <p class="project-desc">
-            Exploratory and inferential analysis of lipid panel data from NHANES 2017–2020
-            using Python. Examined demographic stratification of LDL/HDL/TG distributions,
-            built linear regression models for cholesterol predictors, and produced
-            publication-ready visualizations with seaborn + Plotly.
-          </p>
-          <p class="project-lab">Independent · Data Science Curriculum</p>
-        </div>
-
-        <div class="project-card fade-in" style="animation-delay:.24s">
-          <div class="project-card-top">
-            <span class="project-status completed">completed</span>
-            <span class="project-tag">machine learning</span>
-          </div>
-          <h3 class="project-title">Pima Indians Diabetes Classification</h3>
-          <p class="project-desc">
-            Binary classification project using logistic regression, random forest, and
-            gradient boosting on the Pima Indians Diabetes dataset. Includes feature
-            importance analysis, ROC/AUC evaluation, and cross-validation. Documented
-            as a Jupyter notebook with clinical interpretation of model outputs.
-          </p>
-          <p class="project-lab">Independent · Data Science Curriculum</p>
-        </div>
-
-        <div class="project-card fade-in" style="animation-delay:.32s">
-          <div class="project-card-top">
-            <span class="project-status ongoing">in progress</span>
-            <span class="project-tag">cheminformatics</span>
-          </div>
-          <h3 class="project-title">MMP-13/OA Drug–Outcome Linkage Capstone</h3>
-          <p class="project-desc">
-            Capstone project integrating clinical epidemiology and cheminformatics:
-            mapping MMP-13 inhibitor chemical space (ChEMBL) against osteoarthritis
-            outcomes (SEER/TCGA) to identify mechanistic links between compound
-            structure and clinical phenotype.
-          </p>
-          <p class="project-lab">Independent · Data Science Curriculum</p>
-        </div>
-
-        <div class="project-card fade-in" style="animation-delay:.40s">
-          <div class="project-card-top">
             <span class="project-status ongoing">ongoing</span>
-            <span class="project-tag">science communication</span>
+            <span class="project-tag placeholder-text">[ tag ]</span>
           </div>
-          <h3 class="project-title">Neurophysiology Lab Manual</h3>
-          <p class="project-desc">
-            Authored an original lab manual for the FAU undergraduate neurophysiology
-            laboratory course. Covers electrophysiological recording theory, action
-            potential dynamics, synaptic transmission, and experimental design.
-            Currently in active use by enrolled students.
+          <h3 class="project-title placeholder-text">[ Project Title ]</h3>
+          <p class="project-desc placeholder-text">
+            [ Description of the project. ]
           </p>
-          <p class="project-lab">FAU Department of Biology · TA Role</p>
+          <p class="project-lab placeholder-text">[ Lab · Institution ]</p>
         </div>
 
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 3 — BLOG
+       TAB: BLOG
   ═══════════════════════════════════════════ -->
-  <section id="blog" class="section section-alt">
-    <div class="container">
-      <p class="section-eyebrow">04 — Blog</p>
+  <div id="tab-blog" class="tab-panel">
+    <div class="container section">
+      <p class="section-eyebrow">Blog</p>
       <h2 class="section-title">Notes &amp; Writing</h2>
-      <p class="section-subtitle">Because what personal website doesn't have some?</p>
+      <p class="section-subtitle placeholder-text">[ A short description of what you write about. ]</p>
 
       <div class="blog-list" id="blog-list">
-        <!-- Populated by script.js -->
+        <!-- Populated by script.js from POSTS array -->
+      </div>
+
+      <!-- Shown if POSTS array is empty -->
+      <div id="blog-empty" class="blog-empty">
+        <p class="placeholder-text">[ No posts yet. Add entries to the POSTS array in script.js to get started. ]</p>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- BLOG POST MODAL -->
   <div id="blog-modal" class="modal" aria-hidden="true">
@@ -230,54 +184,68 @@
   </div>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 5 — FUN
+       TAB: FUN
   ═══════════════════════════════════════════ -->
-  <section id="fun" class="section">
-    <div class="container">
-      <p class="section-eyebrow">05 — Fun</p>
+  <div id="tab-fun" class="tab-panel">
+    <div class="container section">
+      <p class="section-eyebrow">Fun</p>
       <h2 class="section-title">Other Things</h2>
-      <p class="section-subtitle">Not everything is pipettes and Python.</p>
+      <p class="section-subtitle placeholder-text">[ Not everything is pipettes and Python. ]</p>
 
+      <!-- COMICS LINK CARD -->
+      <div class="comics-callout fade-in">
+        <div class="comics-callout-left">
+          <span class="comics-icon">🖼</span>
+          <div>
+            <p class="comics-label">Comics &amp; Sketches</p>
+            <p class="comics-sub placeholder-text">[ A short line about your comics. ]</p>
+          </div>
+        </div>
+        <a href="comics.html" target="_blank" class="btn-primary">View Comics ↗</a>
+      </div>
+
+      <!-- OTHER FUN ITEMS -->
       <div class="fun-grid">
 
         <div class="fun-card fade-in">
           <div class="fun-img-placeholder">
-            <span class="fun-emoji">E</span>
+            <span class="fun-emoji">🎵</span>
           </div>
-          <p class="fun-caption">E</p>
+          <!-- ── BLANK: describe your fun thing ── -->
+          <p class="fun-caption placeholder-text">[ Describe something you enjoy outside research. ]</p>
         </div>
 
         <div class="fun-card fade-in" style="animation-delay:.1s">
           <div class="fun-img-placeholder">
-            <span class="fun-emoji">E</span>
+            <span class="fun-emoji">🎮</span>
           </div>
-          <p class="fun-caption">E</p>
+          <p class="fun-caption placeholder-text">[ Another thing you enjoy. ]</p>
         </div>
 
         <div class="fun-card fade-in" style="animation-delay:.2s">
           <div class="fun-img-placeholder">
-            <span class="fun-emoji">E</span>
+            <span class="fun-emoji">📚</span>
           </div>
-          <p class="fun-caption">E</p>
+          <p class="fun-caption placeholder-text">[ Another thing you enjoy. ]</p>
         </div>
 
         <div class="fun-card fade-in" style="animation-delay:.3s">
           <div class="fun-img-placeholder">
-            <span class="fun-emoji">E</span>
+            <span class="fun-emoji">🎬</span>
           </div>
-          <p class="fun-caption">E</p>
+          <p class="fun-caption placeholder-text">[ Another thing you enjoy. ]</p>
         </div>
 
       </div>
 
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
-      <p>Danylo Fedkiv · Florida Atlantic University · <a href="mailto:dfedkiv2022@fau.edu">dfedkiv2022@fau.edu</a></p>
-      <p class="footer-small">Built with HTML, CSS, and vanilla JS · Last updated 2026</p>
+      <p>Danylo Fedkiv · <a href="mailto:you@example.com">your@email.com</a></p>
+      <p class="footer-small">Built with HTML, CSS, and vanilla JS</p>
     </div>
   </footer>
 
