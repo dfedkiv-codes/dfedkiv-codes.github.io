@@ -26,9 +26,7 @@ const COMICS = [
   { title: "Why I would never grade assignments for volunteer hours again", src: "comics/12.png" },
   { title: "Science Olympiad inspired crashout", src: "comics/13.png" },
   { title: "Reason why I have a friend who graduated highschool at 16", src: "comics/14.png" },
-  { title: "What apparently happens to you when you use lightmode", src: "comics/15.png" },
-  
-  
+  { title: "What apparently happens to you when you use lightmode", src: "comics/15.png" }
 ];
 
 /* ══════════════════════════════════════
