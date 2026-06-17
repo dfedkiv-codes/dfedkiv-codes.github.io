@@ -619,6 +619,13 @@ body.comics-page { background: var(--bg-alt); }
     padding: .5rem 0;
     z-index: 99;
   }
+
+  @media (max-width: 620px) {
+  .friends-grid {
+    grid-template-columns: 1fr;
+  }
+  }
+   
   .nav-tabs.open .tab-btn {
     width: 100%;
     text-align: left;
