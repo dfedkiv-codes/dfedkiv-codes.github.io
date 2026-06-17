@@ -1,56 +1,92 @@
 /* ============================================================
    PORTFOLIO SCRIPT — Danylo Fedkiv
-   - Blog post data + rendering
-   - Scroll-triggered fade-in
-   - Sticky nav mobile toggle
-   - Blog post modal
    ============================================================ */
 
 /* ══════════════════════════════════════
-   BLOG POST DATA
-   To add a post: add an object to POSTS.
-   Fields: id, title, date, excerpt, content (HTML string)
+   COMICS DATA
+   Add objects here to populate comics.html.
+   Each entry: { title: "...", src: "URL or path to PNG/JPG" }
+   src can be a full URL: "https://i.imgur.com/abc.png"
+   or a relative path:    "assets/comic-01.png"
 ══════════════════════════════════════ */
-const POSTS = [
-  {
-    id: "test",
-    title: "test",
-    date: "test",
-    dateDisplay: "test",
-    excerpt: "test",
-    content: `
-      <h2>test</h2>
-      <p class="modal-meta">test</p>
-      <p>
-        test
-      </p>
-      <p>
-        test
-      </p>
-      <h3>test</h3>
-      <p>
-        test
-      </p>
-      <p>
-        test
-      </p>
-      <h3>Wtest</h3>
-      <p>
-        test
-      </p>
-    `
-  }
+const COMICS = [
+  // Example — uncomment and edit to add a comic:
+  // { title: "The First One", src: "https://placekitten.com/760/500" },
+  // { title: "Lab Thoughts #1", src: "assets/comic-01.png" },
 ];
 
 /* ══════════════════════════════════════
-   RENDER BLOG LIST
+   BLOG POST DATA
+   Add objects here to populate the Blog tab.
+   Fields: id, title, date, dateDisplay, excerpt, content (HTML)
+══════════════════════════════════════ */
+const POSTS = [
+  // Example — uncomment and edit to add a post:
+  // {
+  //   id: "first-post",
+  //   title: "My First Post",
+  //   date: "2025-06-01",
+  //   dateDisplay: "Jun 2025",
+  //   excerpt: "A short preview of the post shown in the list.",
+  //   content: `
+  //     <h2>My First Post</h2>
+  //     <p class="modal-meta">Jun 2025 · Category</p>
+  //     <p>Full post content here. HTML is supported.</p>
+  //   `
+  // },
+];
+
+/* ══════════════════════════════════════
+   TAB SWITCHING
+══════════════════════════════════════ */
+function initTabs() {
+  const buttons = document.querySelectorAll(".tab-btn");
+  const panels  = document.querySelectorAll(".tab-panel");
+
+  function activateTab(id) {
+    buttons.forEach(b => b.classList.toggle("active", b.dataset.tab === id));
+    panels.forEach(p  => p.classList.toggle("active", p.id === "tab-" + id));
+    // Trigger fade-ins for newly visible panel
+    observeFadeIns();
+    // Update URL hash without jumping
+    history.replaceState(null, "", "#" + id);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      activateTab(btn.dataset.tab);
+      // Close mobile nav if open
+      document.querySelector(".nav-tabs")?.classList.remove("open");
+    });
+  });
+
+  // Load tab from URL hash on first load
+  const hash = location.hash.replace("#", "");
+  const valid = ["about", "projects", "blog", "fun"];
+  if (hash && valid.includes(hash)) {
+    activateTab(hash);
+  }
+}
+
+/* ══════════════════════════════════════
+   BLOG RENDERING
 ══════════════════════════════════════ */
 function renderBlogList() {
-  const container = document.getElementById("blog-list");
-  if (!container) return;
+  const list    = document.getElementById("blog-list");
+  const empty   = document.getElementById("blog-empty");
+  if (!list) return;
 
-  container.innerHTML = POSTS.map(post => `
-    <div class="blog-item fade-in" data-id="${post.id}" tabindex="0" role="button" aria-label="Read: ${post.title}">
+  if (POSTS.length === 0) {
+    list.style.display = "none";
+    if (empty) empty.style.display = "block";
+    return;
+  }
+
+  if (empty) empty.style.display = "none";
+
+  list.innerHTML = POSTS.map(post => `
+    <div class="blog-item fade-in" data-id="${post.id}"
+         tabindex="0" role="button" aria-label="Read: ${post.title}">
       <div class="blog-date">${post.dateDisplay}</div>
       <div>
         <div class="blog-title">${post.title}</div>
@@ -60,7 +96,7 @@ function renderBlogList() {
     </div>
   `).join("");
 
-  container.querySelectorAll(".blog-item").forEach(item => {
+  list.querySelectorAll(".blog-item").forEach(item => {
     item.addEventListener("click", () => openPost(item.dataset.id));
     item.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") openPost(item.dataset.id);
@@ -68,110 +104,121 @@ function renderBlogList() {
   });
 }
 
-/* ══════════════════════════════════════
-   BLOG MODAL
-══════════════════════════════════════ */
 function openPost(id) {
   const post = POSTS.find(p => p.id === id);
   if (!post) return;
-
-  const modal = document.getElementById("blog-modal");
+  const modal   = document.getElementById("blog-modal");
   const content = document.getElementById("modal-content");
   content.innerHTML = post.content;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
-
-  // Focus close button for accessibility
   document.getElementById("modal-close").focus();
 }
 
 function closeModal() {
   const modal = document.getElementById("blog-modal");
+  if (!modal) return;
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
 
 /* ══════════════════════════════════════
+   COMICS RENDERING (comics.html only)
+══════════════════════════════════════ */
+function renderComics() {
+  const feed  = document.getElementById("comics-feed");
+  const empty = document.getElementById("comics-empty");
+  if (!feed) return;
+
+  if (COMICS.length === 0) {
+    feed.style.display = "none";
+    if (empty) empty.style.display = "block";
+    return;
+  }
+
+  if (empty) empty.style.display = "none";
+
+  feed.innerHTML = COMICS.map((comic, i) => `
+    <div class="comic-entry fade-in" style="animation-delay:${i * 0.06}s">
+      <div class="comic-img-wrap">
+        <img src="${comic.src}" alt="${comic.title}" loading="lazy" />
+      </div>
+      <div class="comic-caption">
+        <span class="comic-title">${comic.title}</span>
+        <span class="comic-num">#${String(i + 1).padStart(2, "0")}</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+/* ══════════════════════════════════════
    SCROLL FADE-IN (IntersectionObserver)
 ══════════════════════════════════════ */
-function initFadeIn() {
-  const observer = new IntersectionObserver(
-    (entries) => {
+let fadeObserver = null;
+
+function observeFadeIns() {
+  if (fadeObserver) {
+    // Re-observe any newly visible .fade-in elements
+    document.querySelectorAll(".fade-in:not(.visible)").forEach(el => {
+      fadeObserver.observe(el);
+    });
+    return;
+  }
+
+  fadeObserver = new IntersectionObserver(
+    entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+          fadeObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.08, rootMargin: "0px 0px -30px 0px" }
   );
 
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  document.querySelectorAll(".fade-in").forEach(el => fadeObserver.observe(el));
 }
 
 /* ══════════════════════════════════════
    MOBILE NAV TOGGLE
 ══════════════════════════════════════ */
-function initNav() {
+function initNavToggle() {
   const toggle = document.querySelector(".nav-toggle");
-  const links  = document.querySelector(".nav-links");
-  if (!toggle || !links) return;
+  const tabs   = document.querySelector(".nav-tabs");
+  if (!toggle || !tabs) return;
 
-  toggle.addEventListener("click", () => {
-    links.classList.toggle("open");
+  toggle.addEventListener("click", () => tabs.classList.toggle("open"));
+
+  document.addEventListener("click", e => {
+    if (!e.target.closest("#navbar")) tabs.classList.remove("open");
   });
-
-  // Close nav on link click (mobile)
-  links.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => links.classList.remove("open"));
-  });
-}
-
-/* ══════════════════════════════════════
-   ACTIVE NAV HIGHLIGHT ON SCROLL
-══════════════════════════════════════ */
-function initNavHighlight() {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(a => a.style.color = "");
-          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-          if (active) active.style.color = "var(--accent)";
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  sections.forEach(s => observer.observe(s));
 }
 
 /* ══════════════════════════════════════
    INIT
 ══════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
-  renderBlogList();
-  initFadeIn();  // run after renderBlogList so blog items are in DOM
-  initNav();
-  initNavHighlight();
+  // Index page
+  if (document.getElementById("tab-about")) {
+    initTabs();
+    renderBlogList();
+    initNavToggle();
 
-  // Modal close via button
-  document.getElementById("modal-close")
-    .addEventListener("click", closeModal);
+    const closeBtn     = document.getElementById("modal-close");
+    const backdrop     = document.querySelector(".modal-backdrop");
+    if (closeBtn)  closeBtn.addEventListener("click", closeModal);
+    if (backdrop)  backdrop.addEventListener("click", closeModal);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+  }
 
-  // Modal close via backdrop click
-  document.querySelector(".modal-backdrop")
-    .addEventListener("click", closeModal);
+  // Comics page
+  if (document.getElementById("comics-feed")) {
+    renderComics();
+  }
 
-  // Modal close via Escape key
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closeModal();
-  });
+  // Run fade-ins on initial load
+  observeFadeIns();
 });
