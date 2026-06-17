@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comics — Danylo Fedkiv</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="comics-page">
+
+  <header class="comics-header">
+    <div class="container">
+      <div class="comics-header-inner">
+        <div>
+          <p class="section-eyebrow">Comics &amp; Sketches</p>
+          <h1 class="comics-page-title">Danylo Fedkiv</h1>
+        </div>
+        <a href="index.html" class="btn-link">← Back to portfolio</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container comics-main">
+
+    <!-- ══════════════════════════════════════════
+         COMICS DATA
+         To add a comic: add an object to the COMICS
+         array in script.js. Fields: title, src, alt.
+         src can be a relative path (e.g. "assets/comic1.png")
+         or a full URL.
+    ══════════════════════════════════════════ -->
+    <div id="comics-feed">
+      <!-- Populated by script.js -->
+    </div>
+
+    <div id="comics-empty" class="comics-empty-state">
+      <p class="placeholder-text">No comics yet — add entries to the COMICS array in script.js.</p>
+      <p class="comics-empty-hint">Each entry needs a <code>title</code> and <code>src</code> (image URL or path).</p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Danylo Fedkiv · <a href="index.html">Back to portfolio</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
