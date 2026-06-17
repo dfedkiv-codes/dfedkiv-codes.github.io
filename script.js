@@ -56,6 +56,44 @@ const POSTS = [
 ];
 
 /* ══════════════════════════════════════
+   FRIENDS
+
+   {
+    name: "name",
+    description:
+      "Computational biology student interested in machine learning and genomics.",
+    website: "https://example.com",
+    github: "https://github.com/johndoe"
+  },
+══════════════════════════════════════ */
+const FRIENDS = [
+  {
+    name: "Makai Pindell",
+    description:
+      "Cracked coder, cracked-er composer",
+    website: "https://makaip.com/",
+    github: "https://github.com/makaip"
+  },
+
+  {
+    name: "Alex Castronovo",
+    description:
+      "Doesn't even use AI (im frightened)",
+    website: "https://www.alexcastronovo.com",
+    github: "https://github.com/AlexanderJCS"
+  },
+
+   {
+    name: "George Kamel",
+    description:
+      "Casually frontloading 3 labs with 3 separate projects",
+    website: "",
+    github: "https://github.com/Jubillion"
+  }
+   
+];
+
+/* ══════════════════════════════════════
    TAB SWITCHING
 ══════════════════════════════════════ */
 function initTabs() {
@@ -81,7 +119,7 @@ function initTabs() {
 
   // Load tab from URL hash on first load
   const hash = location.hash.replace("#", "");
-  const valid = ["about", "projects", "blog", "fun"];
+  const valid = ["about", "projects", "blog", "fun", "friends"];
   if (hash && valid.includes(hash)) {
     activateTab(hash);
   }
@@ -141,6 +179,39 @@ function closeModal() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+}
+
+function renderFriends() {
+  const grid = document.getElementById("friends-grid");
+  if (!grid) return;
+
+  grid.innerHTML = FRIENDS.map(friend => `
+    <div class="friend-card fade-in">
+      <div class="friend-name">${friend.name}</div>
+
+      <div class="friend-desc">
+        ${friend.description}
+      </div>
+
+      <div class="friend-links">
+        ${friend.website ? `
+          <a href="${friend.website}"
+             target="_blank"
+             class="friend-link">
+             Website ↗
+          </a>
+        ` : ""}
+
+        ${friend.github ? `
+          <a href="${friend.github}"
+             target="_blank"
+             class="friend-link">
+             GitHub ↗
+          </a>
+        ` : ""}
+      </div>
+    </div>
+  `).join("");
 }
 
 /* ══════════════════════════════════════
@@ -224,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("tab-about")) {
     initTabs();
     renderBlogList();
+    renderFriends();
     initNavToggle();
 
     const closeBtn     = document.getElementById("modal-close");
