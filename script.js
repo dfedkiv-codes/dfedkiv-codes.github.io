@@ -86,9 +86,17 @@ const FRIENDS = [
    {
     name: "George Kamel",
     description:
-      "Casually frontloading 3 labs with 3 separate projects",
+      "Casually frontloading 2 labs with 3 separate projects",
     website: "",
     github: "https://github.com/Jubillion"
+  },
+
+   {
+    name: "Visak Kumar",
+    description:
+      "I don't think he even codes but oh well",
+    website: "",
+    github: "https://github.com/visakk16"
   }
    
 ];
