@@ -435,6 +435,57 @@ ul { list-style: none; }
 .fun-caption { font-size: .8rem; color: var(--text-mid); line-height: 1.5; }
 
 /* ══════════════════════════════════════
+   FRIENDS
+══════════════════════════════════════ */
+
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.friend-card {
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  padding: 1.25rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.friend-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 12px rgba(59,111,160,.08);
+}
+
+.friend-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+
+.friend-desc {
+  font-size: .85rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin-bottom: .9rem;
+}
+
+.friend-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.friend-link {
+  font-family: var(--mono);
+  font-size: .75rem;
+  color: var(--accent);
+}
+
+.friend-link:hover {
+  text-decoration: underline;
+}
+
+/* ══════════════════════════════════════
    COMICS PAGE
 ══════════════════════════════════════ */
 body.comics-page { background: var(--bg-alt); }
