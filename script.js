@@ -11,22 +11,27 @@
 ══════════════════════════════════════ */
 const COMICS = [
   // Example — uncomment and edit to add a comic:
-  { title: "An idea a friend of mine had after browsing the Yamaha website", src: "comics/16.png" },
-  { title: "That time a friend of mine fell asleep in class", src: "comics/1.png" },
-  { title: "The hurricane season from I believe 2025", src: "comics/2.png" },
-  { title: "A weird dream a friend of mine had", src: "comics/3.png" },
-  { title: "Why you should probably never pull an all nighter", src: "comics/4.png" },
-  { title: "When my friend proposed to us a very well hidden pyramid scheme", src: "comics/5.png" },
-  { title: "That time we played hide and seek in the mall", src: "comics/6.png" },
-  { title: "An actually real email sent out at our high school", src: "comics/7.png" },
-  { title: "DO NOT EAT SPICY CHICKEN WINGS BEFORE AN EXAM", src: "comics/8.png" },
-  { title: "The hurricane season from I believe 2024", src: "comics/9.png" },
-  { title: "A comic suggestion from a long time ago", src: "comics/10.png" },
-  { title: "A little snippet of the chaos unraveling in a groupchat", src: "comics/11.png" },
-  { title: "Why I would never grade assignments for volunteer hours again", src: "comics/12.png" },
-  { title: "Science Olympiad inspired crashout", src: "comics/13.png" },
-  { title: "Reason why I have a friend who graduated highschool at 16", src: "comics/14.png" },
-  { title: "What apparently happens to you when you use lightmode", src: "comics/15.png" }
+  { title: "An idea a friend of mine had after browsing the Yamaha website -- 6/17/2026", src: "comics/16.png" },
+  { title: "A birthday party to remember -- Archive", src: "comics/21.png" },
+  { title: "That time a friend of mine fell asleep in class -- Archive", src: "comics/1.png" },
+  { title: "The hurricane season from I believe 2025 -- Archive", src: "comics/2.png" },
+  { title: "A weird dream a friend of mine had -- Archive", src: "comics/3.png" },
+  { title: "Why you should probably never pull an all nighter -- Archive", src: "comics/4.png" },
+  { title: "When my friend proposed to us a very well hidden pyramid scheme -- Archive", src: "comics/5.png" },
+  { title: "That time we played hide and seek in the mall -- Archive", src: "comics/6.png" },
+  { title: "That time when his WIFI went out during a lockdown browser test (the burning house nextdoor had nothing to do with it i swear) -- Archive", src: "comics/18.png" },
+  { title: "When highschoolers think they can outsmart TurnItIn -- Archive", src: "comics/19.png" },
+  { title: "Gas stoves (and also ovens) can be very very dangerous -- Archive", src: "comics/20.png" },
+  { title: "An actually real email sent out at our high school -- Archive", src: "comics/7.png" },
+  { title: "DO NOT EAT SPICY CHICKEN WINGS BEFORE AN EXAM -- Archive", src: "comics/8.png" },
+  { title: "The hurricane season from I believe 2024 -- Archive", src: "comics/9.png" },
+  { title: "A comic suggestion from a long time ago -- Archive", src: "comics/10.png" },
+  { title: "A little snippet of the chaos unraveling in a groupchat -- Archive", src: "comics/11.png" },
+  { title: "Why I would never grade assignments for volunteer hours again -- Archive", src: "comics/12.png" },
+  { title: "Science Olympiad inspired crashout -- Archive", src: "comics/13.png" },
+  { title: "Reason why I have a friend who graduated highschool at 16 -- Archive", src: "comics/14.png" },
+  { title: "What apparently happens to you when you use lightmode -- Archive", src: "comics/15.png" },
+  { title: "A friend during their top secret biotech internship -- Archive", src: "comics/17.png" },
 ];
 
 /* ══════════════════════════════════════
