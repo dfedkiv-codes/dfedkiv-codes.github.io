@@ -10,27 +10,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="comics-page">
-
-<script>
-const PASSWORD = "danylocomics";
-
-const entered = prompt("Enter password to view comics:");
-
-if (entered !== PASSWORD) {
-  document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:sans-serif;
-    ">
-      Access Denied
-    </div>
-  `;
-  throw new Error("Unauthorized");
-}
-</script>
   
   <header class="comics-header">
     <div class="container">
