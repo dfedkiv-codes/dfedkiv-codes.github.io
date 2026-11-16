@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Science Olympiad · Danylo Fedkiv</title>
-  <meta name="description" content="Danylo Fedkiv's Science Olympiad work: Chemistry Lab and Forensics exams written for invitationals, and his record as a competitor.">
+  <meta name="description" content="Science Olympiad exams written by Danylo Fedkiv, filterable by event.">
   <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
@@ -18,69 +18,42 @@
       <a href="projects.html">Projects</a>
       <a href="science-olympiad.html" aria-current="page">Science Olympiad</a>
       <a href="blog.html">Blog</a>
+      <a href="friends.html">Friends</a>
     </nav>
 
     <main>
       <h1>Science Olympiad</h1>
       <p class="lede">
-        I competed in Chemistry Lab and Forensics, captained my team for two seasons,
-        and now write the exams I would have wanted to take.
+        Science Olympiad is a team science competition for middle school (Division B)
+        and high school (Division C) students. Teams compete across a set of events
+        covering biology, chemistry, physics, earth science, and engineering, at
+        invitational, regional, state, and national tournaments.
       </p>
 
       <section>
-        <h2>As a competitor</h2>
-        <dl class="record">
-          <div>
-            <dt>10</dt>
-            <dd>top-six finishes in Chemistry Lab, two of them first place</dd>
-          </div>
-          <div>
-            <dt>5</dt>
-            <dd>top-six finishes in Forensics</dd>
-          </div>
-        </dl>
-      </section>
-
-      <section>
-        <h2>Exams I’ve written</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th scope="col">Tournament</th><th scope="col">Event</th><th scope="col">Role</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Rickards Invitational 2026</td><td>Chemistry Lab C</td><td>Co-writer</td></tr>
-              <tr><td>Boyceville Satellite Invitational 2026</td><td>Chemistry Lab</td><td>Writer and event supervisor</td></tr>
-              <tr><td>LASO 2027</td><td>Chemistry Lab</td><td>Writer</td></tr>
-              <tr><td>BullSSO</td><td>Chemistry Lab</td><td>Grader</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="margin-top:20px">
-          Exams get linked here once their tournaments have run. A Forensics exam is in the works.
+        <h2>What I do</h2>
+        <p>
+          I write exams for invitational tournaments, mainly in Chemistry Lab and Forensics.
         </p>
       </section>
 
       <section>
-        <h2>How I write them</h2>
-        <p>
-          An exam’s job is to separate teams, so every question has to earn its place by
-          telling two levels of preparation apart. I calibrate difficulty across the whole
-          paper instead of question by question, and I build wrong answers out of the specific
-          mistakes people make, so a distractor is only tempting if you made that mistake.
-        </p>
-        <p>
-          The questions I like most are the multi-part ones where chemistry you already know
-          has to be pushed somewhere new: kinetics that don’t sit still, a mechanism you
-          have to time, a gas problem with one more constraint than is comfortable.
-        </p>
-        <p>Everything is typeset in LaTeX, because competitors deserve an exam that looks like someone cared.</p>
+        <h2>Exams</h2>
+        <p>Exams are posted here after their tournaments have run. Filter by event:</p>
+
+        <!-- This list is built from data/exams.js. To add an exam, edit that file. -->
+        <div class="filters" id="exam-filters" role="group" aria-label="Filter exams by event"></div>
+        <ul class="exams" id="exam-list"></ul>
+        <p class="count" id="exam-count" aria-live="polite"></p>
+        <noscript><p>The exam list needs JavaScript to display.</p></noscript>
       </section>
 
-      <footer>Running an invitational and need a Chemistry Lab or Forensics writer? <a href="mailto:danylofedkiv@gmail.com">Email me.</a></footer>
+      <footer>Danylo Fedkiv</footer>
     </main>
   </div>
 
   <script src="assets/js/marble.js"></script>
+  <script src="data/exams.js"></script>
+  <script src="assets/js/exams.js"></script>
 </body>
 </html>
