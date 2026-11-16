@@ -143,11 +143,6 @@ body {
   color: var(--white);
 }
 
-/* blank space between the greeting and the description */
-.gap {
-  height: clamp(180px, 30vh, 310px);
-}
-
 .about {
   margin: 0;
   max-width: 34rem;
@@ -257,6 +252,8 @@ strong { color: var(--white); font-weight: 600; }
 .plain li { padding: 10px 0; border-top: 1px solid var(--rule); }
 .plain li:last-child { border-bottom: 1px solid var(--rule); }
 
+.entry .plain li:last-child { border-bottom: 0; }
+
 .tags {
   margin: 14px 0 0;
   font-family: var(--display);
@@ -363,6 +360,38 @@ footer {
 }
 .cover footer { margin-top: 0; }
 
+/* ---------- right-hand molecule (wide screens only) ---------- */
+
+.specimen { display: none; }
+
+@media (min-width: 1180px) {
+  .inner main {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 43rem) minmax(240px, 380px);
+    column-gap: clamp(48px, 6vw, 112px);
+    align-items: start;
+  }
+  .inner main > * { grid-column: 1; }
+  .inner main > .specimen {
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span 20;
+    position: sticky;
+    top: 15vh;
+    margin: 0;
+  }
+  .specimen img { display: block; width: 100%; height: auto; }
+  .specimen figcaption {
+    margin-top: 20px;
+    font-family: var(--display);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: var(--quiet);
+  }
+  .specimen figcaption strong { display: block; color: var(--white); font-weight: 600; font-size: 1rem; }
+}
+
 /* ---------- small screens: the strip becomes a band across the top ---------- */
 
 @media (max-width: 640px) {
@@ -381,31 +410,31 @@ footer {
 
 /* ---------- page-to-page motion ----------
    enter.js adds .from-cover or .from-inner to <html>, naming the kind of page
-   the visitor just left. When that differs from this page, the marble slides
-   from its old width to its new one and the content rides along with it. */
+   the visitor just left, and then .go once the marble has drawn. Before .go
+   the strip sits at its old width; adding .go lets it slide to the new one,
+   with the content riding along. */
 
-@keyframes marble-from-cover { from { width: var(--strip); } }
-@keyframes marble-from-inner { from { width: var(--strip-inner); } }
-@keyframes page-from-cover { from { transform: translateX(calc(var(--strip) - var(--strip-inner))); } }
-@keyframes page-from-inner { from { transform: translateX(calc(var(--strip-inner) - var(--strip))); } }
-@keyframes band-from-cover { from { height: max(28vh, 150px); } }
-@keyframes band-from-inner { from { height: 96px; } }
-@keyframes text-in { from { opacity: 0; transform: translateY(8px); } }
-
-.from-cover .inner .marble { animation: marble-from-cover 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
-.from-inner .cover .marble { animation: marble-from-inner 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
-.from-cover .inner .page { animation: page-from-cover 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
-.from-inner .cover .page { animation: page-from-inner 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
+.from-cover .inner .marble, .from-inner .cover .marble {
+  transition: width 0.7s cubic-bezier(0.22, 0.9, 0.24, 1), height 0.7s cubic-bezier(0.22, 0.9, 0.24, 1);
+}
+.from-cover .inner .page, .from-inner .cover .page {
+  transition: transform 0.7s cubic-bezier(0.22, 0.9, 0.24, 1);
+}
+.from-cover:not(.go) .inner .marble { width: var(--strip); }
+.from-inner:not(.go) .cover .marble { width: var(--strip-inner); }
+.from-cover:not(.go) .inner .page { transform: translateX(calc(var(--strip) - var(--strip-inner))); }
+.from-inner:not(.go) .cover .page { transform: translateX(calc(var(--strip-inner) - var(--strip))); }
 
 /* every page: the text fades up quickly */
-.page main, .cover footer { animation: text-in 0.4s ease-out 0.08s both; }
+.js .page main, .js .cover footer { transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+.js:not(.go) .page main, .js:not(.go) .cover footer { opacity: 0; transform: translateY(8px); }
 
 @media (max-width: 640px) {
-  .from-cover .inner .marble { animation-name: band-from-cover; }
-  .from-inner .cover .marble { animation-name: band-from-inner; }
-  .from-cover .inner .page, .from-inner .cover .page { animation: none; }
+  .from-cover:not(.go) .inner .marble { width: 100%; height: max(28vh, 150px); }
+  .from-inner:not(.go) .cover .marble { width: 100%; height: 96px; }
+  .from-cover:not(.go) .inner .page, .from-inner:not(.go) .cover .page { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marble, .page, .page main, .cover footer { animation: none !important; }
+  .marble, .page, .page main, .cover footer { transition: none !important; }
 }

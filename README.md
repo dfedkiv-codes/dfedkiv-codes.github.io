@@ -11,3 +11,4 @@ Plain HTML and CSS, no build step. GitHub Pages serves it as is.
 - `assets/css/site.css` — all styling; colours and sizes are variables at the top
 - `cv.pdf` — linked from the cover
 - `CNAME` — the custom domain, danylofedkiv.me
+- `assets/img/` — the molecule drawings shown on the right of each inner page on wide screens
