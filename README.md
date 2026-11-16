@@ -18,3 +18,4 @@ Browsers keep old copies of the stylesheet and scripts. The `?v=8` after each
 `.css` and `.js` link in the HTML files forces a fresh copy: after editing
 `site.css` or a script, raise that number in every HTML file.
 (`data/exams.js` is the exception in practice: a hard refresh, Ctrl+Shift+R, is enough.)
+- `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png` — the browser-tab and home-screen icons, cut from the marble
