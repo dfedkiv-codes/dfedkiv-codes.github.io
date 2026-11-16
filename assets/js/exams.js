@@ -16,6 +16,13 @@
   function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
 
   // ---------- data ----------
+  if (!Array.isArray(window.EXAMS)) {
+    // data/exams.js did not load, which almost always means a typo in it
+    mount.appendChild(el("p", "empty",
+      "The exam list could not be read. There is probably a typo in data/exams.js: " +
+      "a stray character, a missing comma at the end of a line, or a missing quotation mark."));
+    return;
+  }
   var exams = (window.EXAMS || []).filter(function (e) { return e && e.invitational; });
   exams.forEach(function (e, i) {
     e.event = String(e.event || "Other").trim();
