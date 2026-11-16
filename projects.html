@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · Danylo Fedkiv</title>
+  <meta name="description" content="Things Danylo Fedkiv has built: a lab notebook for organic chemists, clinical data analyses, and teaching materials.">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="inner">
+  <div class="marble" data-seed="2"></div>
+
+  <div class="page">
+    <nav class="nav" aria-label="Site">
+      <a href="index.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="science-olympiad.html">Science Olympiad</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+
+    <main>
+      <h1>Projects</h1>
+      <p class="lede">
+        Things I built because I wanted them to exist, or because building them
+        was the fastest way to learn the subject.
+      </p>
+
+      <section>
+        <h2>Software</h2>
+
+        <article class="entry">
+          <header>
+            <h3>Schlenk</h3>
+            <span class="when">In progress</span>
+          </header>
+          <p>
+            A lab notebook for organic chemists that tries to cover the whole working day:
+            notebook entries that lock themselves, a reaction planner with molecule drawing,
+            a chemical inventory, an equipment calendar, and spectra.
+          </p>
+          <p class="tags">Python, FastAPI, SQLite, RDKit, Kekule.js, Plotly</p>
+        </article>
+
+        <article class="entry">
+          <header>
+            <h3>Plate reader toolkit</h3>
+          </header>
+          <p>
+            Scripts that take raw 384-well fluorescence exports and return progress curves
+            and IC<sub>50</sub> fits. Written for my own protease assays so I could stop
+            doing it by hand.
+          </p>
+          <p class="tags">Python</p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Biomedical data science</h2>
+
+        <article class="entry">
+          <header>
+            <h3>A 20-week curriculum, taught to myself</h3>
+          </header>
+          <p>
+            A course I designed to get from clinical data analysis to cheminformatics and
+            graph neural networks, with a capstone predicting 30-day hospital readmission.
+            The work lives in three repositories:
+          </p>
+          <ul class="plain">
+            <li><a href="https://github.com/dfedkiv-codes/biomedds-MIMIC">biomedds-MIMIC</a>, analyses on the MIMIC critical care database</li>
+            <li><a href="https://github.com/dfedkiv-codes/biomedds-NHANES">biomedds-NHANES</a>, analyses on the NHANES national health survey</li>
+            <li><a href="https://github.com/dfedkiv-codes/biomedds-misc">biomedds-misc</a>, everything that fit neither</li>
+          </ul>
+        </article>
+      </section>
+
+      <section>
+        <h2>Teaching materials</h2>
+
+        <article class="entry">
+          <header>
+            <h3>Graduate organic chemistry, in 15 weeks</h3>
+          </header>
+          <p>
+            A self-study program built on the framework of Harvard’s Chem 206, running from
+            physical organic foundations through total synthesis.
+          </p>
+        </article>
+
+        <article class="entry">
+          <header>
+            <h3>Neurophysiology lab manual</h3>
+          </header>
+          <p>An 80-page manual I wrote as a teaching assistant for the course.</p>
+        </article>
+
+        <article class="entry">
+          <header>
+            <h3>High school biology study guide</h3>
+          </header>
+          <p>A 100-page guide that has been used by more than 150 students.</p>
+        </article>
+      </section>
+
+      <footer>Danylo Fedkiv</footer>
+    </main>
+  </div>
+
+  <script src="assets/js/marble.js"></script>
+</body>
+</html>

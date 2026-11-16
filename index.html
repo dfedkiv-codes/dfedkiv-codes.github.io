@@ -1,222 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Danylo Fedkiv</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Danylo Fedkiv: chemical biology student at FAU's Wilkes Honors College, Goldwater Scholar, Science Olympiad exam writer.">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="cover">
+  <div class="marble" data-seed="0"></div>
 
-  <!-- NAV / TAB BAR -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <span class="nav-logo">Danylo Fedkiv</span>
-      <ul class="nav-tabs">
-        <li><button class="tab-btn active" data-tab="about">About</button></li>
-        <li><button class="tab-btn" data-tab="projects">Projects</button></li>
-        <li><button class="tab-btn" data-tab="blog">Blog</button></li>
-        <li><button class="tab-btn" data-tab="fun">Fun</button></li>
-        <li><button class="tab-btn" data-tab="friends">Friends</button></li>
+  <div class="page">
+    <nav class="nav" aria-label="Site">
+      <a href="index.html" aria-current="page">About</a>
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="science-olympiad.html">Science Olympiad</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+
+    <main>
+      <h1 class="hello">Hello, I’m Danylo</h1>
+
+      <!-- Upload your photo as assets/img/headshot.jpg (portrait, about 4:5). The dashed box disappears on its own. -->
+      <figure class="headshot">
+        <img src="assets/img/headshot.jpg" alt="Danylo Fedkiv" onerror="this.parentNode.classList.add('is-empty')">
+      </figure>
+
+      <p class="about">
+        I study chemistry and biology at Florida Atlantic University’s Wilkes Honors College,
+        where I’m a Goldwater Scholar. In the lab I build peptides and small molecules to ask
+        questions about proteins, and I’m working toward an MD-PhD.
+      </p>
+      <p class="about">
+        Otherwise: I write Science Olympiad chemistry exams, tutor organic chemistry,
+        and listen to more ELO than I can defend.
+      </p>
+
+      <ul class="links">
+        <li><a href="https://github.com/dfedkiv-codes">GitHub</a></li>
+        <li><a href="cv.pdf">CV</a></li>
+        <li><a href="mailto:danylofedkiv@gmail.com">Email</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
-    </div>
-  </nav>
+    </main>
 
-  <!-- ═══════════════════════════════════════════
-       TAB: ABOUT
-  ═══════════════════════════════════════════ -->
-  <div id="tab-about" class="tab-panel active">
-    <div class="container section">
-
-      <div class="about-grid fade-in">
-        <div class="about-main">
-          <p class="section-eyebrow">About</p>
-          <h1 class="about-name">Danylo Fedkiv</h1>
-
-          <!-- ── BLANK: replace with your bio ── -->
-          <p class="about-tagline placeholder-text">
-            Chemistry researcher at FAU focused on building rigorous wet lab and computational experience in organic and bioinorganic systems. My work spans structured laboratory training, independent research, and interdisciplinary problem-solving with an emphasis on mechanistic understanding and translational potential.
-          </p>
-
-          <div class="about-links">
-            <!-- ── BLANK: add your real email / links ── -->
-            <a href="mailto:danylofedkiv@gmail.com" class="btn-link">✉ danylofedkiv@gmail.com</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <footer>Jupiter, Florida</footer>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       TAB: PROJECTS
-  ═══════════════════════════════════════════ -->
-  <div id="tab-projects" class="tab-panel">
-    <div class="container section">
-      <p class="section-eyebrow">Projects</p>
-      <h2 class="section-title">Research &amp; Independent Work</h2>
-
-      <div class="project-grid">
-        <!-- ── BLANK project card template ──
-             Duplicate and fill in to add more projects ── -->
-
-        <div class="project-card fade-in">
-          <div class="project-card-top">
-            <span class="project-status ongoing">ongoing</span>
-            <span class="project-tag placeholder-text">Hobby</span>
-          </div>
-          <h3 class="project-title placeholder-text">Learning Data Analysis</h3>
-          <p class="project-desc placeholder-text">
-            Learning methods to perform scientific data analysis and machine learning for both biomedical and organic chemistry research. 
-          </p>
-          <p class="project-lab placeholder-text"></p>
-        </div>
-
-        <!--
-        <div class="project-card fade-in" style="animation-delay:.08s">
-          <div class="project-card-top">
-            <span class="project-status completed">completed</span>
-            <span class="project-tag placeholder-text">[ tag ]</span>
-          </div>
-          <h3 class="project-title placeholder-text">[ Project Title ]</h3>
-          <p class="project-desc placeholder-text">
-            [ Description of the project. ]
-          </p>
-          <p class="project-lab placeholder-text">[ Lab · Institution ]</p>
-        </div>
-
-        <div class="project-card fade-in" style="animation-delay:.16s">
-          <div class="project-card-top">
-            <span class="project-status ongoing">ongoing</span>
-            <span class="project-tag placeholder-text">[ tag ]</span>
-          </div>
-          <h3 class="project-title placeholder-text">[ Project Title ]</h3>
-          <p class="project-desc placeholder-text">
-            [ Description of the project. ]
-          </p>
-          <p class="project-lab placeholder-text">[ Lab · Institution ]</p>
-        </div>
-        -->
-        
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       TAB: BLOG
-  ═══════════════════════════════════════════ -->
-  <div id="tab-blog" class="tab-panel">
-    <div class="container section">
-      <p class="section-eyebrow">Blog</p>
-      <h2 class="section-title">Notes &amp; Writing</h2>
-      <p class="section-subtitle placeholder-text">Because every good website should have some blog posts.</p>
-
-      <div class="blog-list" id="blog-list">
-        <!-- Populated by script.js from POSTS array -->
-      </div>
-
-      <!-- Shown if POSTS array is empty -->
-      <div id="blog-empty" class="blog-empty">
-        <p class="placeholder-text">[ No posts yet. Add entries to the POSTS array in script.js to get started. ]</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOG POST MODAL -->
-  <div id="blog-modal" class="modal" aria-hidden="true">
-    <div class="modal-backdrop"></div>
-    <div class="modal-box" role="dialog" aria-modal="true">
-      <button class="modal-close" id="modal-close">✕</button>
-      <div class="modal-content" id="modal-content"></div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       TAB: FUN
-  ═══════════════════════════════════════════ -->
-  <div id="tab-fun" class="tab-panel">
-    <div class="container section">
-      <p class="section-eyebrow">Fun</p>
-      <h2 class="section-title">Other Things</h2>
-      <p class="section-subtitle placeholder-text">Breaks are needed to properly fun-ction</p>
-
-      <!-- COMICS LINK CARD -->
-      <div class="comics-callout fade-in">
-        <div class="comics-callout-left">
-          <span class="comics-icon">🖼</span>
-          <div>
-            <p class="comics-label">Comics &amp; Sketches</p>
-            <p class="comics-sub placeholder-text">Mainly based on real life events that at one point did happen</p>
-          </div>
-        </div>
-        <a href="comics.html" target="_blank" class="btn-primary">View Comics ↗</a>
-      </div>
-
-      <!-- OTHER FUN ITEMS -->
-      <div class="fun-grid">
-
-        <div class="fun-card fade-in">
-          <div class="fun-img-placeholder">
-            <span class="fun-emoji">🎵</span>
-          </div>
-          <!-- ── BLANK: describe your fun thing ── -->
-          <p class="fun-caption placeholder-text">[ Describe something you enjoy outside research. ]</p>
-        </div>
-
-        <div class="fun-card fade-in" style="animation-delay:.1s">
-          <div class="fun-img-placeholder">
-            <span class="fun-emoji">🎮</span>
-          </div>
-          <p class="fun-caption placeholder-text">[ Another thing you enjoy. ]</p>
-        </div>
-
-        <div class="fun-card fade-in" style="animation-delay:.2s">
-          <div class="fun-img-placeholder">
-            <span class="fun-emoji">📚</span>
-          </div>
-          <p class="fun-caption placeholder-text">[ Another thing you enjoy. ]</p>
-        </div>
-
-        <div class="fun-card fade-in" style="animation-delay:.3s">
-          <div class="fun-img-placeholder">
-            <span class="fun-emoji">🎬</span>
-          </div>
-          <p class="fun-caption placeholder-text">[ Another thing you enjoy. ]</p>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-  
-<!-- ═══════════════════════════════════════════
-     TAB: FRIENDS
-═══════════════════════════════════════════ -->
-<div id="tab-friends" class="tab-panel">
-  <div class="container section">
-    <p class="section-eyebrow">Friends</p>
-    <h2 class="section-title">Cool People</h2>
-    <p class="section-subtitle">
-      Friends, collaborators, and other interesting humans.
-    </p>
-
-    <div id="friends-grid" class="friends-grid">
-      <!-- Populated by script.js -->
-    </div>
-  </div>
-</div>
-  
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>Danylo Fedkiv</p>
-      <p class="footer-small">Built with HTML, CSS, and vanilla JS</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  <script src="assets/js/marble.js"></script>
 </body>
 </html>
