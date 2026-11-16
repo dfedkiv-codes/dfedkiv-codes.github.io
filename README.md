@@ -14,7 +14,7 @@ Plain HTML and CSS, no build step. GitHub Pages serves it as is.
 
 ## If a change does not show up
 
-Browsers keep old copies of the stylesheet and scripts. The `?v=8` after each
+Browsers keep old copies of the stylesheet and scripts. The `?v=9` after each
 `.css` and `.js` link in the HTML files forces a fresh copy: after editing
 `site.css` or a script, raise that number in every HTML file.
 (`data/exams.js` is the exception in practice: a hard refresh, Ctrl+Shift+R, is enough.)

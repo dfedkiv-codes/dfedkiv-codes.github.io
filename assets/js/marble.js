@@ -16,6 +16,7 @@
   var FRAG = [
     "precision highp float;",
     "uniform vec2 uRes; uniform float uTime; uniform float uSeed; uniform float uUnit;",
+    "uniform vec2 uMouse; uniform float uPull;",
 
     "float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }",
     "float noise(vec2 p){",
@@ -61,6 +62,14 @@
 
     "void main(){",
     "  vec2 p = gl_FragCoord.xy / uUnit;",
+
+    // the cursor stirs the paint: a small swirl and pinch around it
+    "  vec2 d = p - uMouse / uUnit;",
+    "  float near = exp(-dot(d, d) / 0.022) * uPull;",
+    "  float ang = 0.3 * near;",
+    "  d = mat2(cos(ang), -sin(ang), sin(ang), cos(ang)) * d * (1.0 - 0.08 * near);",
+    "  p = uMouse / uUnit + d;",
+
     "  p += vec2(uSeed * 3.7, uSeed * 1.9);",
     "  float t = uTime * 0.018;",
 
@@ -70,7 +79,7 @@
     "                fbm(p + 3.2 * q + vec2(8.3, 2.8) - 0.5 * t));",
     "  float f = fbm(p + 3.4 * r);",
 
-    "  float v = f * 1.55 + 0.45 * r.x + 0.25 * q.y + 0.04 * uSeed;",
+    "  float v = f * 1.55 + 0.45 * r.x + 0.25 * q.y + 0.04 * uSeed + 0.03 * near;",
     "  vec3 col = paint(v * 1.9);",
 
     // fine striations that follow the flow
@@ -119,6 +128,21 @@
   var uTime = gl.getUniformLocation(prog, "uTime");
   var uSeed = gl.getUniformLocation(prog, "uSeed");
   var uUnit = gl.getUniformLocation(prog, "uUnit");
+  var uMouse = gl.getUniformLocation(prog, "uMouse");
+  var uPull = gl.getUniformLocation(prog, "uPull");
+
+  // cursor: where it is, and how strongly it is stirring (0 when off the marble)
+  var mouse = { x: 0, y: 0, tx: 0, ty: 0, pull: 0, tpull: 0, seen: false };
+  window.addEventListener("pointermove", function (e) {
+    var r = host.getBoundingClientRect();
+    var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    mouse.tx = e.clientX - r.left;
+    mouse.ty = r.height - (e.clientY - r.top); // WebGL counts up from the bottom
+    mouse.tpull = inside ? 1 : 0;
+    if (!mouse.seen) { mouse.x = mouse.tx; mouse.y = mouse.ty; mouse.seen = true; }
+  }, { passive: true });
+  document.addEventListener("pointerleave", function () { mouse.tpull = 0; });
+  window.addEventListener("blur", function () { mouse.tpull = 0; });
 
   var seed = parseFloat(host.getAttribute("data-seed") || "0");
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -143,6 +167,12 @@
     // one noise unit is about 520 CSS px, so swirls keep their size on any strip width
     gl.uniform1f(uUnit, 520 * dpr);
     gl.uniform1f(uSeed, seed);
+    // ease toward the cursor so the stir trails behind it like something viscous
+    mouse.x += (mouse.tx - mouse.x) * 0.09;
+    mouse.y += (mouse.ty - mouse.y) * 0.09;
+    mouse.pull += (mouse.tpull - mouse.pull) * 0.06;
+    gl.uniform2f(uMouse, mouse.x * dpr, mouse.y * dpr);
+    gl.uniform1f(uPull, still ? 0 : mouse.pull);
     gl.uniform1f(uTime, still ? 40.0 : 40.0 + ms / 1000);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
