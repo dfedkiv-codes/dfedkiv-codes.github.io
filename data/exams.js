@@ -46,6 +46,7 @@ window.EXAMS = [
   { season: "2026–27", invitational: "Invitational name", event: "Chemistry Lab",    division: "C", exam: "", key: "", note: "", example: true },
   { season: "2026–27", invitational: "Invitational name", event: "Forensics",        division: "C", exam: "", key: "", note: "", example: true },
   { season: "2026–27", invitational: "Invitational name", event: "Protein Modeling", division: "C", exam: "", key: "", note: "", example: true },
-  { season: "2025–26", invitational: "Invitational name", event: "Chemistry Lab",    division: "B", exam: "", key: "", note: "", example: true },
-  { season: "2025–26", invitational: "Invitational name", event: "Forensics",        division: "C", exam: "", key: "", note: "", example: true },
+  { season: "Sample", invitational: "2025-2026 FAUHS Placement Exam", event: "Chemistry Lab",    division: "C", exam: "https://drive.google.com/file/d/1s2syBees_mFu-72zTYFl6LaK0noh1hdI/view?usp=sharing", key: "", note: "Truncated", example: true },
+  { season: "Sample", invitational: "2025-2026 FAUHS Placement Exam", event: "Forensics",    division: "C", exam: "https://drive.google.com/file/d/1V4KJYVSaQHtQCjMxgU5bnl3ZYhRQ3SVs/view?usp=sharing", key: "", note: "Truncated", example: true },
+  { season: "Sample", invitational: "2025-2026 FAUHS Placement Exam", event: "Materials Science",    division: "C", exam: "https://drive.google.com/file/d/1lZDFpm0t6IudnSw8y5rsXmmFPDYlrypY/view?usp=sharing", key: "", note: "Truncated", example: true },
 ];
