@@ -378,3 +378,34 @@ footer {
   .cover main { justify-content: flex-start; padding-top: 16px; }
   body { font-size: 1.125rem; }
 }
+
+/* ---------- page-to-page motion ----------
+   enter.js adds .from-cover or .from-inner to <html>, naming the kind of page
+   the visitor just left. When that differs from this page, the marble slides
+   from its old width to its new one and the content rides along with it. */
+
+@keyframes marble-from-cover { from { width: var(--strip); } }
+@keyframes marble-from-inner { from { width: var(--strip-inner); } }
+@keyframes page-from-cover { from { transform: translateX(calc(var(--strip) - var(--strip-inner))); } }
+@keyframes page-from-inner { from { transform: translateX(calc(var(--strip-inner) - var(--strip))); } }
+@keyframes band-from-cover { from { height: max(28vh, 150px); } }
+@keyframes band-from-inner { from { height: 96px; } }
+@keyframes text-in { from { opacity: 0; transform: translateY(8px); } }
+
+.from-cover .inner .marble { animation: marble-from-cover 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
+.from-inner .cover .marble { animation: marble-from-inner 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
+.from-cover .inner .page { animation: page-from-cover 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
+.from-inner .cover .page { animation: page-from-inner 0.65s cubic-bezier(0.22, 0.9, 0.24, 1) both; }
+
+/* every page: the text fades up quickly */
+.page main, .cover footer { animation: text-in 0.4s ease-out 0.08s both; }
+
+@media (max-width: 640px) {
+  .from-cover .inner .marble { animation-name: band-from-cover; }
+  .from-inner .cover .marble { animation-name: band-from-inner; }
+  .from-cover .inner .page, .from-inner .cover .page { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marble, .page, .page main, .cover footer { animation: none !important; }
+}
