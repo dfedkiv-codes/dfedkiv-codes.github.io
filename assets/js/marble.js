@@ -16,7 +16,7 @@
   var FRAG = [
     "precision highp float;",
     "uniform vec2 uRes; uniform float uTime; uniform float uSeed; uniform float uUnit;",
-    "uniform vec2 uMouse; uniform float uPull;",
+    "uniform vec4 uWake[12];", // xy: where the cursor was (px), zw: the push it left there
 
     "float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }",
     "float noise(vec2 p){",
@@ -63,12 +63,16 @@
     "void main(){",
     "  vec2 p = gl_FragCoord.xy / uUnit;",
 
-    // the cursor stirs the paint: a small swirl and pinch around it
-    "  vec2 d = p - uMouse / uUnit;",
-    "  float near = exp(-dot(d, d) / 0.022) * uPull;",
-    "  float ang = 0.3 * near;",
-    "  d = mat2(cos(ang), -sin(ang), sin(ang), cos(ang)) * d * (1.0 - 0.08 * near);",
-    "  p = uMouse / uUnit + d;",
+    // wading through water: every recent cursor position shoves the paint
+    // the way the cursor was travelling, plus a small bow wave outward
+    "  vec2 push = vec2(0.0);",
+    "  for (int i = 0; i < 12; i++){",
+    "    vec2 w = uWake[i].zw;",
+    "    vec2 d = p - uWake[i].xy / uUnit;",
+    "    float r2 = dot(d, d);",
+    "    push += w * exp(-r2 / 0.022) + d * (2.2 * length(w)) * exp(-r2 / 0.03);",
+    "  }",
+    "  p -= push;",
 
     "  p += vec2(uSeed * 3.7, uSeed * 1.9);",
     "  float t = uTime * 0.018;",
@@ -79,7 +83,7 @@
     "                fbm(p + 3.2 * q + vec2(8.3, 2.8) - 0.5 * t));",
     "  float f = fbm(p + 3.4 * r);",
 
-    "  float v = f * 1.55 + 0.45 * r.x + 0.25 * q.y + 0.04 * uSeed + 0.03 * near;",
+    "  float v = f * 1.55 + 0.45 * r.x + 0.25 * q.y + 0.04 * uSeed + 0.35 * length(push);",
     "  vec3 col = paint(v * 1.9);",
 
     // fine striations that follow the flow
@@ -128,21 +132,44 @@
   var uTime = gl.getUniformLocation(prog, "uTime");
   var uSeed = gl.getUniformLocation(prog, "uSeed");
   var uUnit = gl.getUniformLocation(prog, "uUnit");
-  var uMouse = gl.getUniformLocation(prog, "uMouse");
-  var uPull = gl.getUniformLocation(prog, "uPull");
+  var uWake = gl.getUniformLocation(prog, "uWake");
 
-  // cursor: where it is, and how strongly it is stirring (0 when off the marble)
-  var mouse = { x: 0, y: 0, tx: 0, ty: 0, pull: 0, tpull: 0, seen: false };
+  // The wake: a short list of places the cursor has just been, each holding
+  // the push it gave the paint there. A faster cursor pushes harder; a still
+  // cursor does nothing. Each push fades out over about a second.
+  var WAKE = 12;          // must match uWake[12] in the shader
+  var FADE_MS = 650;      // how quickly a push dies away
+  var STRENGTH = 0.07;    // paint moved per (px/ms) of cursor speed
+  var MAX_SPEED = 2.2;    // px/ms; faster than this pushes no harder
+  var wake = [];          // { x, y, vx, vy, born }
+  var wakeData = new Float32Array(WAKE * 4);
+  var last = null;        // previous pointer sample
+  var vel = { x: 0, y: 0 };
+
   window.addEventListener("pointermove", function (e) {
     var r = host.getBoundingClientRect();
-    var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
-    mouse.tx = e.clientX - r.left;
-    mouse.ty = r.height - (e.clientY - r.top); // WebGL counts up from the bottom
-    mouse.tpull = inside ? 1 : 0;
-    if (!mouse.seen) { mouse.x = mouse.tx; mouse.y = mouse.ty; mouse.seen = true; }
+    var now = performance.now();
+    var x = e.clientX - r.left;
+    var y = r.height - (e.clientY - r.top); // WebGL counts up from the bottom
+    if (last && now - last.t < 120) {
+      var dt = Math.max(now - last.t, 4);
+      // smooth the speed a little so one jittery sample does not spike
+      vel.x += ((x - last.x) / dt - vel.x) * 0.5;
+      vel.y += ((y - last.y) / dt - vel.y) * 0.5;
+      var speed = Math.sqrt(vel.x * vel.x + vel.y * vel.y);
+      var inside = x >= -60 && x <= r.width + 60 && y >= -60 && y <= r.height + 60;
+      var prev = wake[wake.length - 1];
+      var far = !prev || Math.abs(x - prev.x) + Math.abs(y - prev.y) > 22;
+      if (inside && far && speed > 0.05) {
+        var k = Math.min(speed, MAX_SPEED) / speed * STRENGTH;
+        wake.push({ x: x, y: y, vx: vel.x * k, vy: vel.y * k, born: now });
+        if (wake.length > WAKE) wake.shift();
+      }
+    } else {
+      vel.x = 0; vel.y = 0;
+    }
+    last = { x: x, y: y, t: now };
   }, { passive: true });
-  document.addEventListener("pointerleave", function () { mouse.tpull = 0; });
-  window.addEventListener("blur", function () { mouse.tpull = 0; });
 
   var seed = parseFloat(host.getAttribute("data-seed") || "0");
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -167,12 +194,22 @@
     // one noise unit is about 520 CSS px, so swirls keep their size on any strip width
     gl.uniform1f(uUnit, 520 * dpr);
     gl.uniform1f(uSeed, seed);
-    // ease toward the cursor so the stir trails behind it like something viscous
-    mouse.x += (mouse.tx - mouse.x) * 0.09;
-    mouse.y += (mouse.ty - mouse.y) * 0.09;
-    mouse.pull += (mouse.tpull - mouse.pull) * 0.06;
-    gl.uniform2f(uMouse, mouse.x * dpr, mouse.y * dpr);
-    gl.uniform1f(uPull, still ? 0 : mouse.pull);
+    // hand the shader the wake, each push faded by its age
+    var now = performance.now();
+    while (wake.length && now - wake[0].born > FADE_MS * 5) wake.shift();
+    for (var i = 0; i < WAKE; i++) {
+      var w = wake[i], o = i * 4;
+      if (w && !still) {
+        var age = now - w.born;
+        // swell quickly, then die away
+        var fade = Math.min(age / 90, 1) * Math.exp(-age / FADE_MS);
+        wakeData[o] = w.x * dpr; wakeData[o + 1] = w.y * dpr;
+        wakeData[o + 2] = w.vx * fade; wakeData[o + 3] = w.vy * fade;
+      } else {
+        wakeData[o] = wakeData[o + 1] = wakeData[o + 2] = wakeData[o + 3] = 0;
+      }
+    }
+    gl.uniform4fv(uWake, wakeData);
     gl.uniform1f(uTime, still ? 40.0 : 40.0 + ms / 1000);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
