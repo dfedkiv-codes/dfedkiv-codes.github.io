@@ -143,6 +143,17 @@ body {
   color: var(--white);
 }
 
+/* cover photo; sized by screen height so the cover still fits one screen */
+.portrait {
+  margin: 0;
+  width: min(100%, clamp(200px, 30vh, 330px));
+}
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .about {
   margin: 0;
   max-width: 34rem;
