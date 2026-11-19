@@ -14,8 +14,9 @@ Plain HTML and CSS, no build step. GitHub Pages serves it as is.
 
 ## If a change does not show up
 
-Browsers keep old copies of the stylesheet and scripts. The `?v=12` after each
+Browsers keep old copies of the stylesheet and scripts. The `?v=13` after each
 `.css` and `.js` link in the HTML files forces a fresh copy: after editing
 `site.css` or a script, raise that number in every HTML file.
 (`data/exams.js` is the exception in practice: a hard refresh, Ctrl+Shift+R, is enough.)
 - `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png` — the browser-tab and home-screen icons, cut from the marble
+- `assets/img/portrait.jpg` — the photo on the cover
