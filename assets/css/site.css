@@ -143,17 +143,6 @@ body {
   color: var(--white);
 }
 
-/* cover photo; sized by screen height so the cover still fits one screen */
-.portrait {
-  margin: 0;
-  width: min(100%, clamp(200px, 30vh, 330px));
-}
-.portrait img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .about {
   margin: 0;
   max-width: 34rem;
@@ -408,49 +397,6 @@ footer {
   color: var(--quiet);
 }
 .cover footer { margin-top: 0; }
-
-/* ---------- cover, wide screens: photo strip on the right edge ----------
-   The photo mirrors the marble: colour on the left edge, black and white
-   on the right, text in the black between them. */
-
-.photo-strip { display: none; }
-
-@media (min-width: 1360px) {
-  /* the photo takes a share of the width, so the marble gives a little back */
-  :root { --photo: clamp(260px, 20vw, 420px); --strip: clamp(96px, 35vw, 640px); }
-  .cover .nav { gap: 4px 22px; }
-  .cover .page { padding-left: clamp(24px, 4vw, 72px); padding-right: clamp(24px, 4vw, 72px); }
-  .cover .portrait { display: none; }
-  .photo-strip {
-    display: block;
-    position: fixed;
-    inset: 0 0 0 auto;
-    /* its left edge fades into the black, so the photo has no hard edge */
-    width: var(--photo);
-    margin: 0;
-    overflow: hidden;
-    pointer-events: none;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.35) 22%, #000 48%);
-            mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.35) 22%, #000 48%);
-  }
-  .photo-strip img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 30%;
-  }
-  .cover .page { margin-right: var(--photo); position: relative; z-index: 1; }
-  .cover .hello { font-size: clamp(2.5rem, 3.9vw, 4.25rem); }
-
-  /* arriving from an inner page, the photo slides in from the right as the marble widens */
-  .from-inner .photo-strip { transition: transform 0.7s cubic-bezier(0.22, 0.9, 0.24, 1); }
-  .from-inner:not(.go) .photo-strip { transform: translateX(100%); }
-}
-
-@media (min-width: 1360px) and (max-width: 1439px) {
-  .cover .nav { gap: 4px 18px; font-size: 0.9375rem; }
-}
 
 /* ---------- small screens: the strip becomes a band across the top ---------- */
 
