@@ -425,9 +425,8 @@ footer {
     display: block;
     position: fixed;
     inset: 0 0 0 auto;
-    /* wider than the space reserved for it: the extra reaches left under
-       the black and fades into it, so the photo has no hard edge */
-    width: calc(var(--photo) * 1.45);
+    /* its left edge fades into the black, so the photo has no hard edge */
+    width: var(--photo);
     margin: 0;
     overflow: hidden;
     pointer-events: none;
@@ -439,10 +438,9 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 55% 30%;
+    object-position: 50% 30%;
   }
   .cover .page { margin-right: var(--photo); position: relative; z-index: 1; }
-  .cover main { max-width: 31rem; }
   .cover .hello { font-size: clamp(2.5rem, 3.9vw, 4.25rem); }
 
   /* arriving from an inner page, the photo slides in from the right as the marble widens */
