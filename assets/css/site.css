@@ -409,6 +409,27 @@ footer {
 }
 .cover footer { margin-top: 0; }
 
+/* ---------- cover, wide screens: photo to the right of the text ---------- */
+
+@media (min-width: 1280px) {
+  .cover main {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 36rem) clamp(220px, 20vw, 340px);
+    grid-template-areas:
+      "who   who"
+      "bio   photo"
+      "links photo";
+    column-gap: clamp(40px, 4vw, 80px);
+    align-content: center;
+    justify-content: start;
+  }
+  .cover .who { grid-area: who; }
+  .cover .bio { grid-area: bio; }
+  .cover .links { grid-area: links; align-self: start; }
+  .cover .portrait { grid-area: photo; width: 100%; align-self: start; }
+}
+
 /* ---------- small screens: the strip becomes a band across the top ---------- */
 
 @media (max-width: 760px) {
