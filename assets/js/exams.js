@@ -4,7 +4,22 @@
   var mount = document.getElementById("exam-archive");
   if (!mount) return;
 
-  var COLORS = ["#ff3d8b", "#2fd6e8", "#ff9a3d", "#2fd67f", "#a77bff", "#ffd84a"];
+  // one colour per event, in the order of window.EVENTS; picked to stay
+  // distinct from each other on black
+  var COLORS = [
+    "#ff3d8b", // pink
+    "#2fd6e8", // cyan
+    "#ff9a3d", // orange
+    "#2fd67f", // green
+    "#a77bff", // violet
+    "#ffd84a", // yellow
+    "#4d8dff", // blue
+    "#b5f23d", // lime
+    "#f25cff", // magenta
+    "#d4a373", // tan
+    "#ff5a5a", // red
+    "#cfcfcf"  // grey
+  ];
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);

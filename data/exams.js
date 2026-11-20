@@ -34,14 +34,18 @@
 ------------------------------------------------------------------- */
 
 /* The events you write, in the order their filter buttons should appear.
-   Each one keeps its colour for as long as it keeps its place in this list,
-   so add new events at the end. An event used below but missing here still
-   works; it is simply added after these. */
+   Each event's colour comes from its place in this list (12 colours, then
+   they repeat), so add new events at the END to keep existing colours.
+   An event used below but missing here still works, but its colour can
+   shift as you add exams, so it is worth listing every event here. */
 window.EVENTS = [
   "Chemistry Lab",
   "Forensics",
   "Protein Modeling",
   "Materials Science",
+  "Experimental Design",
+  "Crime Busters",
+  "Fermi Questions",
 ];
 
 window.EXAMS = [
