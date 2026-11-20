@@ -9,8 +9,8 @@
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/site.css?v=22">
-  <script src="assets/js/enter.js?v=22"></script>
+  <link rel="stylesheet" href="assets/css/site.css?v=23">
+  <script src="assets/js/enter.js?v=23"></script>
 </head>
 <body class="inner">
   <div class="marble" data-seed="3"></div>
@@ -57,7 +57,7 @@
     </main>
   </div>
 
-  <script src="assets/js/marble.js?v=22"></script>
+  <script src="assets/js/marble.js?v=23"></script>
   <script>
     // Load the exam list fresh every visit, so edits to data/exams.js show up
     // as soon as GitHub has deployed them, with no stale copy in the way.
@@ -66,7 +66,7 @@
       data.src = "data/exams.js?t=" + Date.now();
       data.onload = data.onerror = function () {
         var app = document.createElement("script");
-        app.src = "assets/js/exams.js?v=22";
+        app.src = "assets/js/exams.js?v=23";
         document.body.appendChild(app);
       };
       document.body.appendChild(data);

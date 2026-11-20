@@ -37,7 +37,9 @@
    Each event's colour comes from its place in this list (12 colours, then
    they repeat), so add new events at the END to keep existing colours.
    An event used below but missing here still works, but its colour can
-   shift as you add exams, so it is worth listing every event here. */
+   shift as you add exams, so it is worth listing every event here.
+   An event with only one exam gets no button of its own: it goes under a
+   grey "Miscellaneous" button until you add a second exam for it. */
 window.EVENTS = [
   "Chemistry Lab",
   "Forensics",

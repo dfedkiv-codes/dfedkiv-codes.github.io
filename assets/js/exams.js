@@ -17,9 +17,11 @@
     "#b5f23d", // lime
     "#f25cff", // magenta
     "#d4a373", // tan
-    "#ff5a5a", // red
-    "#cfcfcf"  // grey
+    "#ff5a5a"  // red
   ];
+  // events with a single exam share one grey "Miscellaneous" button
+  var MISC = "Miscellaneous";
+  var MISC_COLOR = "#9a9a9a";
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -56,8 +58,16 @@
   exams.forEach(function (e) { if (events.indexOf(e.event) === -1) events.push(e.event); });
   var colorOf = {};
   events.forEach(function (name, i) { colorOf[name] = COLORS[i % COLORS.length]; });
+  // how many exams each event has; events with exactly one go under Miscellaneous
+  var tally = {};
+  exams.forEach(function (e) { tally[e.event] = (tally[e.event] || 0) + 1; });
+  function group(e) { return tally[e.event] === 1 ? MISC : e.event; }
+  exams.forEach(function (e) { if (group(e) === MISC) colorOf[e.event] = MISC_COLOR; });
+  colorOf[MISC] = MISC_COLOR;
+  events = events.filter(function (name) { return tally[name] > 1; });
+  if (exams.some(function (e) { return group(e) === MISC; })) events.push(MISC);
   events = events.filter(function (name) {
-    return exams.some(function (e) { return e.event === name; });
+    return name === MISC || exams.some(function (e) { return e.event === name; });
   });
 
   var divisions = [];
@@ -96,7 +106,7 @@
   divRow.setAttribute("aria-label", "Filter exams by division");
 
   function matches(e, ev, dv) {
-    return (ev === "all" || e.event === ev) && (dv === "all" || e.division === dv);
+    return (ev === "all" || group(e) === ev) && (dv === "all" || e.division === dv);
   }
 
   function chip(row, label, key, value, color) {
@@ -207,7 +217,7 @@
       groups.appendChild(el("p", "empty", "No exams match those filters yet."));
     }
 
-    var nEvents = events.filter(function (n) { return shown.some(function (e) { return e.event === n; }); }).length;
+    var nEvents = Object.keys(tally).filter(function (n) { return shown.some(function (e) { return e.event === n; }); }).length;
     summary.textContent = shown.length === exams.length
       ? plural(exams.length, "exam") + " across " + plural(nEvents, "event") + " and " + plural(seasons.length, "season")
       : "Showing " + shown.length + " of " + plural(exams.length, "exam");
