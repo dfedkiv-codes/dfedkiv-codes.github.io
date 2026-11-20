@@ -151,7 +151,8 @@
     var files = el("div", "exam-files");
     if (e.exam) files.appendChild(fileLink("Exam", e.exam));
     if (e.key) files.appendChild(fileLink("Key", e.key));
-    if (!e.exam && !e.key) files.appendChild(el("span", null, e.example ? "Placeholder" : "Not released yet"));
+    if (e.folder) files.appendChild(fileLink("Folder", e.folder));
+    if (!e.exam && !e.key && !e.folder) files.appendChild(el("span", null, e.example ? "Placeholder" : "Not released yet"));
     li.appendChild(files);
 
     return li;

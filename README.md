@@ -14,8 +14,8 @@ Plain HTML and CSS, no build step. GitHub Pages serves it as is.
 
 ## If a change does not show up
 
-Browsers keep old copies of the stylesheet and scripts. The `?v=20` after each
+Browsers keep old copies of the stylesheet and scripts. The `?v=21` after each
 `.css` and `.js` link in the HTML files forces a fresh copy: after editing
 `site.css` or a script, raise that number in every HTML file.
-(`data/exams.js` is the exception in practice: a hard refresh, Ctrl+Shift+R, is enough.)
+(`data/exams.js` needs nothing: the Science Olympiad page loads it fresh on every visit.)
 - `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png` — the browser-tab and home-screen icons, cut from the marble

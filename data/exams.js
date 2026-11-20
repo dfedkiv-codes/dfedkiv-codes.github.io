@@ -17,6 +17,8 @@
      exam          Link to the exam. Leave "" until it is released and the
                    row will say "Not released yet".
      key           Link to the answer key. Optional; leave "" to hide it.
+     folder        Link to a folder (e.g. Google Drive) holding the exam's files.
+                   Optional; leave "" to hide it.
      note          Optional short note, e.g. "Co-written".
      date          Optional, "2026-10-31". Only used to order exams within
                    a season (latest first).
